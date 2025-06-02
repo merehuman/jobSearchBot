@@ -1,0 +1,6 @@
+Follow the rules in the project-rules.mdc file.
+I want to create a bot that searches the web for jobs for me.
+The findings will be stored in a .csv file where the rows will be each job, and the column will be the job title, the job location, the job description, the qualifications, and the salary.
+I want to have a separate file for internships for recent master's graduates and for entry level jobs.
+The type of job I am looking for is in real-time software engineering.
+My qualifications are that I have a Master's of Science in Computer Science.
