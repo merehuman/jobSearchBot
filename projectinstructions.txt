@@ -4,3 +4,4 @@ The findings will be stored in a .csv file where the rows will be each job, and 
 I want to have a separate file for internships for recent master's graduates and for entry level jobs.
 The type of job I am looking for is in real-time software engineering.
 My qualifications are that I have a Master's of Science in Computer Science.
+The jobs have to be in Berkeley, Oakland, San Francisco, or New York. They can also be remote.
