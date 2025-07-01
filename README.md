@@ -1,145 +1,78 @@
-# LinkedIn Job Search Bot
+# Company Careers Job Search Bot
 
-A Python-based LinkedIn job search bot that automatically searches and collects job postings based on user-specified criteria. The bot prompts for LinkedIn credentials, search keywords, and location preferences, then categorizes results into internships and entry-level positions.
+A Python bot that searches the official careers pages of user-specified companies for job openings matching your keyword interests and qualifications.
 
 ## Features
 
-- **Interactive User Interface**: Prompts for LinkedIn credentials, search keywords, and locations
-- **LinkedIn Authentication**: Secure login using provided credentials
-- **Smart Job Categorization**: Automatically separates jobs into:
-  - Internships for recent Master's graduates
-  - Entry-level positions
-- **Comprehensive Data Collection**: Stores job data in CSV format with:
-  - Job title
-  - Company name
-  - Location
-  - Full job description
-  - Extracted qualifications
-  - Salary information (when available)
-  - Job URL
-  - Date posted
-  - Search date
-- **Duplicate Prevention**: Avoids collecting the same job multiple times
-- **Rate Limiting**: Respects LinkedIn's rate limits with intelligent delays
-- **Logging**: Comprehensive logging for debugging and monitoring
+- **User-driven:** Enter a list of company names and job search keywords at startup.
+- **Automatic careers page discovery:** Attempts to find each company's official careers/jobs page.
+- **Flexible scraping:** Modular design allows for custom parsers for specific companies and a generic fallback for standard layouts.
+- **Keyword filtering:** Finds jobs whose title or description matches any of your keywords.
+- **CSV output:** Saves all matching jobs to a CSV file with company name, job title, location, description, job URL, and more.
+- **Ethical scraping:** Always checks robots.txt and respects site terms and request rates.
+- **Extensible:** Easy to add support for new companies or custom page formats.
+
+## How It Works
+
+1. **Prompt for input:**
+   - Enter company names (comma-separated)
+   - Enter job search keywords (comma-separated)
+2. **For each company:**
+   - Find the official careers/jobs page
+   - Scrape or parse job listings
+   - Filter jobs by keywords
+3. **Save results:**
+   - All matching jobs are saved to `results.csv`
 
 ## Project Structure
 
 ```
-jobSearchBot/
-├── main.py              # Main entry point with user interface
-├── job_searcher.py      # LinkedIn job search functionality
-├── data_manager.py      # Data storage and CSV management
-├── utils.py             # Utility functions and helpers
-├── requirements.txt     # Python dependencies
-├── README.md           # This file
-├── job_results/        # Output directory for CSV files
-│   ├── internships.csv
-│   └── entry_level_jobs.csv
-└── logs/               # Log files directory
+company-careers-bot/
+├── main.py                # Main entry point and user interface
+├── company_finders/       # Parsers for specific companies (modular)
+│   ├── __init__.py
+│   ├── google.py          # Example: Google careers parser
+│   └── ...
+├── generic_career_parser.py # Fallback parser for standard layouts
+├── data_manager.py        # Handles saving results to CSV
+├── utils.py               # Shared helpers (keyword matching, robots.txt, etc.)
+├── config.py              # Configuration settings
+├── requirements.txt       # Python dependencies
+├── README.md              # This file
+├── projectinstructions.txt# Project goals and rules
+└── logs/                  # Log files
 ```
 
 ## Requirements
 
 - Python 3.8+
-- Chrome browser (for Selenium WebDriver)
-- LinkedIn account
-- Dependencies listed in requirements.txt
-
-## Installation
-
-1. Clone this repository:
-   ```bash
-   git clone <repository-url>
-   cd jobSearchBot
-   ```
-
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Dependencies listed in `requirements.txt`
 
 ## Usage
 
-1. Run the main script:
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the bot:
    ```bash
    python main.py
    ```
+3. Enter company names and keywords when prompted.
+4. View results in `results.csv`.
 
-2. Follow the prompts:
-   - Enter your LinkedIn email and password
-   - Provide job search keywords (comma-separated)
-   - Specify location preferences (comma-separated)
-   - Confirm search parameters
+## Extending the Bot
 
-3. The bot will:
-   - Login to LinkedIn
-   - Search for jobs based on your criteria
-   - Categorize jobs into internships and entry-level positions
-   - Save results to separate CSV files
+- To add support for a new company with a unique careers page, add a new module in `company_finders/` and register it in the main script.
+- The bot will use the generic parser for companies without a custom module.
 
-## Output Files
+## Ethics & Best Practices
 
-The bot creates two CSV files in the `job_results/` directory:
-
-- **`internships.csv`**: Contains internship positions suitable for recent Master's graduates
-- **`entry_level_jobs.csv`**: Contains entry-level positions
-
-Each CSV file includes the following columns:
-- `job_title`: The job title
-- `company`: Company name
-- `location`: Job location
-- `job_description`: Full job description
-- `qualifications`: Extracted qualifications and requirements
-- `salary`: Salary information (when available)
-- `job_url`: Direct link to the job posting
-- `date_posted`: When the job was posted
-- `search_date`: When the job was found by the bot
-
-## Configuration
-
-The bot is designed for users with:
-- Master's of Science in Computer Science
-- Focus on real-time software engineering positions
-- Interest in both internships and entry-level positions
-
-## Safety and Ethics
-
-- **Rate Limiting**: The bot includes intelligent delays to respect LinkedIn's servers
-- **User Consent**: Always requires explicit user confirmation before starting searches
-- **Secure Input**: Passwords are masked during input
-- **Logging**: All activities are logged for transparency
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Chrome Driver Issues**: The bot uses webdriver-manager to automatically handle Chrome driver installation
-2. **Login Failures**: Ensure your LinkedIn credentials are correct and your account is not locked
-3. **No Jobs Found**: Try different keywords or locations, or check if LinkedIn's structure has changed
-
-### Logs
-
-Check the `logs/` directory for detailed error messages and debugging information.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+- **Do not use this bot on sites that forbid scraping.**
+- **Always check robots.txt before scraping a site.**
+- **Be respectful with request rates (add delays).**
+- **Use only for personal or research purposes unless you have permission.**
 
 ## License
 
-This project is for educational purposes. Please respect LinkedIn's terms of service and use responsibly.
-
-## Disclaimer
-
-This bot is designed for personal use and educational purposes. Users are responsible for complying with LinkedIn's terms of service and applicable laws. The developers are not responsible for any misuse of this tool. 
+This project is for educational and personal use. Please respect each company's terms of service and robots.txt. 

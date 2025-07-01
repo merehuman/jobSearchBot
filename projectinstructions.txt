@@ -1,7 +1,24 @@
-Follow the rules in the project-rules.mdc file.
-I want to create a bot that searches the web for jobs for me, specifically on LinkedIn.
-When it starts up, it will prompt the user for their login and password for LinkedIn, and then asks them what keywords it would like searched separated by a comma.
-It will also prompt you for job location preferences separated by a comma.
-The findings will be stored in a .csv file where the rows will be each job, and the column will be the job title, the job location, the job description, the qualifications, and the salary.
-I want to have a separate file for internships for recent master's graduates and for entry level jobs.
+Project: Company Careers Job Search Bot
+
+Goal:
+Create a bot that searches the official careers pages of user-specified companies for job openings that match the user's qualifications and keyword interests.
+
+How it works:
+- On startup, prompt the user to enter a list of company names (comma-separated).
+- Prompt the user to enter job search keywords (comma-separated).
+- For each company, the bot will:
+    - Attempt to find the official careers/jobs page for that company.
+    - Scrape or parse the job listings on that page.
+    - Search for jobs whose title or description matches any of the user's keywords.
+- The bot will collect and save all matching jobs to a CSV file.
+- Each row in the CSV will include: company name, job title, location, job description, job URL, and any other available details.
+- The bot should be modular so that new companies/career page formats can be added easily.
+- The bot should respect robots.txt and terms of service for each site.
+
+Rules:
+- Do not use LinkedIn or other third-party job boards.
+- Only access public company career/job pages.
+- Always check robots.txt before scraping a site.
+- Be respectful with request rates (add delays).
+- Make the code easy to extend for new companies.
 
