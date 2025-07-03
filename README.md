@@ -1,4 +1,4 @@
-# Company Careers Job Search Bot
+# Job Search Bot
 
 A Python bot that searches the official careers pages of user-specified companies for job openings matching your keyword interests and qualifications.
 
